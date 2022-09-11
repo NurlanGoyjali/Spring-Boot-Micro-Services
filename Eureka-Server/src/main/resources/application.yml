@@ -1,0 +1,29 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  application:
+    name: EUREKA-SERVER
+  boot:
+    admin:
+      client:
+        instance:
+          management-base-url: ${ADMIN_SERVICE_URL:http://localhost:8761}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

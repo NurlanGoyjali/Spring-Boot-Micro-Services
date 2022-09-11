@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+spring:
+  r2dbc:
+    url: r2dbc:mysql://${DATABASE_HOST:localhost}:3306/${DATABASE_NAME:projecta127}
+    username: {root}
+    password: {1234}
+
+  application:
+    name: User-Keycloac
+  boot:
+    admin:
+      client:
+        instance:
+          management-base-url: ${ADMIN_SERVICE_URL:http://localhost:8081}
+
+
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

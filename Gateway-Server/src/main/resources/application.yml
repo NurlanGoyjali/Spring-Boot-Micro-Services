@@ -1,0 +1,32 @@
+server:
+  port: 8080
+#---------------------------------------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+#---------------------------------------
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+#---------------------------------------
+spring:
+  application:
+    name: API-GATEWAY
+  boot:
+    admin:
+      client:
+        instance:
+          management-base-url: ${ADMIN_SERVICE_URL:http://localhost:8080}
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8081
+          predicates: Path=/user/**
+
